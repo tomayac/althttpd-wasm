@@ -1,14 +1,20 @@
-<script>
-  var Module = {
-    preInit: () => {
-      FS.writeFile("/index.html", "<p>Hello, world!</p>");
-    },
-    onRuntimeInitialized: () => {
-      Module.callMain(['-user', 'web_user', '-jail', '0']);
-    },
-  };
+<script type="module">
+  import loadWASMModule from './althttpd.mjs';
+
+  (async () => {
+    const Module = {
+      preInit: () => {
+        Module.FS.writeFile("/index.html", "<p>Hello, world!</p>");
+      },
+      onRuntimeInitialized: () => {
+        Module.callMain(['-user', 'web_user', '-jail', '0']);
+      },
+    };
+
+    await loadWASMModule(Module);
+    Module.callMain(['-user', 'web_user', '-jail', '0'])
+  })();
 </script>
-<script src="althttpd.js"></script>
 
 <h1>althttpd-wasm</h1>
 
