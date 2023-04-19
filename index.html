@@ -1,7 +1,9 @@
 <script>
   var Module = {
-    onRuntimeInitialized: () => {
+    preInit: () => {
       FS.writeFile("/index.html", "<p>Hello, world!</p>");
+    },
+    onRuntimeInitialized: () => {
       Module.callMain(['-user', 'web_user', '-jail', '0']);
     },
   };
