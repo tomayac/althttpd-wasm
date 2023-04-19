@@ -1,0 +1,9 @@
+<script>
+  var Module = {
+    onRuntimeInitialized: () => {
+      FS.writeFile("/index.html", "<p>Hello, world!</p>");
+      Module.callMain(['-user', 'web_user', '-jail', '0']);
+    },
+  };
+</script>
+<script src="althttpd.js"></script>
